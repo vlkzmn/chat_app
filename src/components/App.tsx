@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 
 import './App.scss';
@@ -62,7 +63,10 @@ export const App: React.FC = () => {
         }
 
         case 'messages': {
-          setMessages(resData.messages);
+          if (resData.messages) {
+            setMessages(resData.messages);
+          }
+
           setRoom(resData.room);
           setLoading(false);
 
@@ -77,6 +81,7 @@ export const App: React.FC = () => {
 
         case 'error': {
           setErrorMessage(resData.message);
+          console.error(resData.error);
 
           break;
         }
